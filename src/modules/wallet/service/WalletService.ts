@@ -13,4 +13,8 @@ export default class WalletService {
     await wallet.save();
     return wallet;
   }
+
+  async getWallets() {
+    return await Wallet.find();
+  }
 }
