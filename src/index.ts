@@ -1,7 +1,8 @@
 import { Elysia } from "elysia";
+import HealthController from "./modules/common/controller/HealthController";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
+const PORT = process.env.PORT || 3000;
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+const app = new Elysia().use(HealthController).listen(PORT);
+
+console.log(`Running on http://localhost:${PORT}`);
