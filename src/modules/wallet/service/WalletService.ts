@@ -3,7 +3,7 @@ import { Wallet } from "../../../infra/db/schemas/wallet";
 import { DateTimeHelper } from "../../../utils/DateTimeHelper";
 
 export default class WalletService {
-  async createWallet(walletDTO: CreateWalletDTO) {
+  async createWallet(walletDTO: CreateWalletDTO): Promise<Wallet> {
     const wallet = new Wallet({
       ...walletDTO,
       id: crypto.randomUUID(),

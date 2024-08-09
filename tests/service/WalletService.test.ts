@@ -16,9 +16,9 @@ describe("WalletService Tests", () => {
     };
     const result = await service.createWallet(wallet);
 
-    console.log(result);
-
     expect(result.name).toBe(wallet.name);
     expect(result.id).toBeTruthy();
+    expect(result.createdAt).toBeTruthy();
+    expect(result.updatedAt).toBeTruthy();
   });
 });
