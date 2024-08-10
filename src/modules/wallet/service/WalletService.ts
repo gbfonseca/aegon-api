@@ -25,4 +25,23 @@ export default class WalletService {
 
     return data;
   }
+
+  async updateWallet(updateWallet: Partial<Wallet>) {
+    if (!updateWallet.id) throw new Error("Wallet id is required to update");
+
+    const wallet = await Wallet.findOne({
+      id: updateWallet.id,
+    });
+    if (!wallet) throw Error("Wallet not found");
+
+    await Wallet.updateOne({
+      id: updateWallet.id,
+      ...updateWallet,
+    });
+
+    return {
+      ...wallet,
+      ...updateWallet,
+    };
+  }
 }

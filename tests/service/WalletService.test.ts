@@ -57,4 +57,18 @@ describe("WalletService Tests", () => {
 
     expect(result.length).toBe(2);
   });
+
+  it("should update wallet", async () => {
+    const wallet = Factory.buildWallet();
+    const createdWallet = await service.createWallet(wallet);
+
+    const data = {
+      id: createdWallet.id,
+      name: "UPDATED",
+    };
+
+    const result = await service.updateWallet(data);
+
+    expect(result.name).toBe("UPDATED");
+  });
 });
