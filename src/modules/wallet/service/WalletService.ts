@@ -14,7 +14,15 @@ export default class WalletService {
     return wallet;
   }
 
-  async getWallets() {
+  async getWallets(): Promise<Wallet[]> {
     return await Wallet.find();
+  }
+
+  async getUserWallets(userId: string): Promise<Wallet[]> {
+    const data = await Wallet.find({
+      userId,
+    });
+
+    return data;
   }
 }
