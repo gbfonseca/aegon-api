@@ -71,4 +71,14 @@ describe("WalletService Tests", () => {
 
     expect(result.name).toBe("UPDATED");
   });
+
+  it("should delete wallet", async () => {
+    const wallet = Factory.buildWallet();
+    const createdWallet = await service.createWallet(wallet);
+
+    await service.deleteWallet(createdWallet.id!);
+    const promise = service.findWalletById(createdWallet.id!);
+
+    await expect(promise).rejects.toThrow("Wallet not found");
+  });
 });
